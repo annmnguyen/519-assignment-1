@@ -26,15 +26,12 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
 
-      - name: debug
-        run: ls -l Node/WEB/
-
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version:  ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: './Node/WEB/package.json'
+          cache-dependency-path: './Node/WEB/frontend/package.json'
 
       - name: npm install, build, and test
         working-directory: '${{ env.WEBAPP_PACKAGE_PATH }}'
