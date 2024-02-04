@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
 
+      - name: debug
+        run: ls -l Node/WEB/
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
@@ -35,8 +38,9 @@ jobs:
 
       - name: npm install, build, and test
         working-directory: '${{ env.WEBAPP_PACKAGE_PATH }}'
-        run: |
+        run: 
           npm install
+
 
       - name: npm install react frontend
         working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
