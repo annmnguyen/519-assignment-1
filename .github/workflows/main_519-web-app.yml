@@ -35,9 +35,12 @@ jobs:
 
       - name: npm install, build, and test
         working-directory: './${{ env.WEBAPP_PACKAGE_PATH }}'
-        run: 
+        run: |
           npm install
 
+      - name: List contents of the frontend directory
+        working-directory: Node/WEB/frontend
+        run: ls -la
 
       - name: npm install react frontend
         working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
