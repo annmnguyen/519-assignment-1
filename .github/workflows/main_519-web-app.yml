@@ -41,7 +41,7 @@ jobs:
           # npm run test --if-present
 
       - name: npm install react frontend
-        working-director: './${{ env.FRONTEND_PACKAGE_PATH }}'
+        working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
         run: npm install
              npm run build
              rm - r public
