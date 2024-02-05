@@ -5,8 +5,8 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: 519-web-app
-  AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'
-  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
+  AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'  # Ensure this path is correct
+  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'  # Ensure this path is correct
   NODE_VERSION: '20.x'
 
 permissions:
@@ -15,7 +15,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -33,50 +32,29 @@ jobs:
         run: |
           npm install
           npm run build
-          # Consider reviewing the necessity of removing these directories
-          # rm -r public
-          # rm -r node_modules
-          # rm -r src
 
-      - name: Upload artifact for deployment job
+      - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: .
+          path: .  # Update this path to the location of your build artifacts
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions: 
-      contents: none
     environment:
       name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: 'Login to Azure'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          auth-type: 'SERVICE_PRINCIPAL'
-
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
-
-      - name: Download artifact from build job
+      - name: 'Download artifact from build job'
         uses: actions/download-artifact@v3
         with:
           name: node-app
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
+      - name: 'Deploy to Azure Web App using Publish Profile'
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          package: ./node-app  # Ensure this points to the downloaded artifact
