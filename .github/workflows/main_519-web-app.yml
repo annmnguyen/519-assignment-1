@@ -1,20 +1,13 @@
 name: Deploy Node.js to Azure Web App
 
 on:
-  [push]
+  push
 
-# CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
-#
-# 1. Set up the following secrets in your repository:
-#   AZURE_WEBAPP_PUBLISH_PROFILE
-#
-# 2. Change these variables for your configuration:
 env:
-  AZURE_WEBAPP_NAME: 519-web-app    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'      # set this to the path to your web app project, defaults to the repository root
-  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
-  NODE_VERSION: '20.x'                # set this to the node version to use
+  AZURE_WEBAPP_NAME: 519-web-app
+  AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB' # Path to your web app project
+  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend' # Path to your frontend project
+  NODE_VERSION: '20.x'
 
 permissions:
   contents: read
@@ -24,31 +17,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version:  ${{ env.NODE_VERSION }}
-          #cache: 'npm'
-          #cache-dependency-path: './Node/WEB/frontend/package.json'
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: npm install, build, and test
-        working-directory: './${{ env.WEBAPP_PACKAGE_PATH }}'
+      - name: npm install for backend
+        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: npm install
+
+      - name: npm install for frontend
+        working-directory: ${{ env.FRONTEND_PACKAGE_PATH }}
         run: |
           npm install
-
-      - name: List contents of the frontend directory
-        working-directory: Node/WEB/frontend
-        run: ls -la
-
-      - name: npm install react frontend
-        working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
-        run: npm install
-             npm run build
-             rm -r public
-             rm -r node_modules
-             rm -r src
+          npm run build
+          rm -r public
+          rm -r node_modules
+          rm -r src
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -79,6 +66,3 @@ jobs:
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-  
-  # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
-  # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
