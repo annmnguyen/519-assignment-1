@@ -10,7 +10,7 @@ on:
     
 
 env:
-  AZURE_WEBAPP_NAME: 519-web-app-2
+  AZURE_WEBAPP_NAME: 510-web-app-2
   AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'
   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '20.x'
