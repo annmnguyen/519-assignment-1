@@ -1,7 +1,11 @@
-name: Deploy Node.js to Azure Web App
+name: DNU - Deploy Node.js to Azure Web App
 
 on:
-  push
+  push:
+    branches: [ "main" ]
+    paths:
+      - "Node/WEB-inactive/**"
+  workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: 519-web-app
