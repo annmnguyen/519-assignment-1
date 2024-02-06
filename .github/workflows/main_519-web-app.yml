@@ -4,7 +4,7 @@ on:
   push
 
 env:
-  AZURE_WEBAPP_NAME: 519-web-app
+  AZURE_WEBAPP_NAME: 519-web-app-2
   AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'
   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '20.x'
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: npm install for backend
+      - name: npm install 
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         run: npm install
 
