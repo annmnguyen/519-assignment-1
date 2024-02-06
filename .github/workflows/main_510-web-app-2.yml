@@ -1,7 +1,13 @@
 name: Deploy Node.js to Azure Web App
 
 on:
-  push
+  push:
+    branches: [ "main" ]
+    paths:
+      - "Node/WEB/**"
+  workflow_dispatch:
+    
+    
 
 env:
   AZURE_WEBAPP_NAME: 519-web-app-2
@@ -64,5 +70,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B8EE8637A8D54B86BF075298D8011B43 }}
+          publish-profile: ${{ secrets.SECRET }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
