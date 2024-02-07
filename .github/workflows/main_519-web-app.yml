@@ -1,72 +1,57 @@
-name: DNU - Deploy Node.js to Azure Web App
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy ASP.Net Core app to Azure Web App - 519-web-app
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - "Node/WEB-inactive/**"
+    branches:
+      - main
   workflow_dispatch:
-
-env:
-  AZURE_WEBAPP_NAME: 519-web-app
-  AZURE_WEBAPP_PACKAGE_PATH: 'Node/WEB'
-  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
-  NODE_VERSION: '20.x'
-
-permissions:
-  contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          dotnet-version: '7.x'
+          include-prerelease: true
 
-      - name: npm install 
-        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        run: npm install
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
 
-      - name: npm install for frontend
-        working-directory: ${{ env.FRONTEND_PACKAGE_PATH }}
-        run: |
-          npm install
-          npm run build
-          rm -r public
-          rm -r node_modules
-          rm -r src
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: node-app
-          path: .
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    permissions: 
-      contents: none
+    runs-on: windows-latest
     needs: build
-    runs-on: ubuntu-latest
     environment:
-      name: 'Development'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: node-app
+          name: .net-app
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_65799A91C7B8483CBAEDD7504BA84066 }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          app-name: '519-web-app'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7F811071EF3643E3B475F0300745CB85 }}
+          package: .
