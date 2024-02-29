@@ -54,7 +54,6 @@ jobs:
       uses: azure/container-apps-deploy-action@v1
       with:
         appSourcePath: ${{ github.workspace }}/Node/API2
-        arcName: 519assignment2
         containerAppName: assignment2
         resourceGroup: 519-web-app_group
         
