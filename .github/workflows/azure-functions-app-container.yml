@@ -58,27 +58,7 @@ jobs:
         resourceGroup: 519-web-app_group
         acrName: 519assignment2
         
-        
-
-    - name: 'Compose Customized Docker Image'
-      shell: bash
-      run: |
-        # If your function app project is not located in your repository's root
-        # Please change the path to your directory for docker build
-        docker build Node/API2 -t ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
-        docker push ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
-
-    - name: 'Run Azure Functions Container Action'
-      uses: Azure/functions-container-action@v1
-      id: fa
-      with:
-        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        image: ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
-
-    # If you want to display or use the functionapp url, then uncomment the task below
-    #- name: 'Published functionapp url'
-    #  run: |
-    #    echo "${{ steps.fa.outputs.app-url }}"
+      
 
     - name: Azure logout
       run: |
