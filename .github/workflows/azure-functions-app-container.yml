@@ -56,6 +56,7 @@ jobs:
         appSourcePath: ${{ github.workspace }}/Node/API2
         containerAppName: assignment2
         resourceGroup: 519-web-app_group
+        acrName: 519assignment2
         
         
 
