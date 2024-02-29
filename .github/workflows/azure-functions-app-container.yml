@@ -65,7 +65,7 @@ jobs:
       run: |
         # If your function app project is not located in your repository's root
         # Please change the path to your directory for docker build
-        docker build ./Node/API2 -t ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
+        docker build Node/API2 -t ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
         docker push ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.TAG }}
 
     - name: 'Run Azure Functions Container Action'
