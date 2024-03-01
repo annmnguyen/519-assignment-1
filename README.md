@@ -6,7 +6,7 @@ The repositatory contains GitHub Action workflows to deploy Azure Web App, Azure
 
 ## Azure Credientials ##
 
-Authenticate using Azure credientials through Publish Profile and Azure Service Principals using Azure CLI commands. This allows the workflow to have access to the Azure Subscriptions and directories needed. 
+Authenticate using Azure credientials through Publish Profile and Azure Service Principals using Azure CLI commands. This allows the workflow to have access to the Azure Subscriptions and directories required. 
 
 ## Workflows ##
 
