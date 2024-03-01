@@ -10,7 +10,7 @@ Authenticate using Azure credientials through Publish Profile and Azure Service 
 
 ## Workflows ##
 
-There are three workflows for each Azure App. This is where Azure credientals and environment variables are needed, and checking out Git repo, setting up and installing dependencies, and building and deploying into Azure. 
+There are three workflows for each Azure App. The workflows include entering required Azure credientals for log in, environment variables, checking out Git repo, setting up and installing dependencies, and building and deploying into Azure Apps. 
 
 ## Creating Azure apps ##
 
