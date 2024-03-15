@@ -1,4 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { DefaultAzureCredential, ManagedIdentityCredential } from "@azure/identity";
+import { SecretClient } from "@azure/keyvault-secrets";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
