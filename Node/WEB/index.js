@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000
 app.use('/', express.static('frontend/build'));
 
 app.get('/api', (req, res) => {
-  const secretname = 'secret3';  
+  const secretname = process.env.secret3;  
   res.json({ message: 'Hello, world! This is secret ', secret: secretname || 'No secret found' });
 });
 
