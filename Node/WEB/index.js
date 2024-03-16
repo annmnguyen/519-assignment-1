@@ -6,7 +6,7 @@ app.use('/', express.static('frontend/build'));
 
 app.get('/api', (req, res) => {
   const secretValue = process.env.myAppSetting;  
-  res.json({ message: 'Hello, world!', secret: secretValue || 'No secret found' });
+  res.json({'Hello, world!', secretValue || 'No secret found' });
 });
 
 app.listen(port, () => {
