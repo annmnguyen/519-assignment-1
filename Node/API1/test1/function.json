@@ -20,7 +20,7 @@
       "direction": "out",
       "name": "outputQueueItem",
       "queueName": "assignment4", 
-      "connection": "MyStorageConnectionAppSetting" 
+      "connection": "myStorageConnectionAppSetting" 
     }
   ],
   "scriptFile": "../dist/test1/index.js"
