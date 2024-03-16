@@ -15,6 +15,13 @@
       "direction": "out",
       "name": "res"
     }
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "outputQueueItem",
+      "queueName": "assignment4", 
+      "connection": "MyStorageConnectionAppSetting" 
+    }
   ],
   "scriptFile": "../dist/test1/index.js"
 }
