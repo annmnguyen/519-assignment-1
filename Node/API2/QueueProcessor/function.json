@@ -6,7 +6,6 @@
       "direction": "in",
       "queueName": "assignment-4",
       "connection": "myStorageConnectionAppSetting" 
-      
     }
   ]
 }
