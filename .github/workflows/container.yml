@@ -57,8 +57,7 @@ jobs:
         containerAppName: assignment2
         resourceGroup: 519-web-app_group
         acrName: 519assignment2
-        environmentVariables: |
-          secret1=secretref:secret1
+        environmentVariables: secret1=secretref:secret1
         
       
     
