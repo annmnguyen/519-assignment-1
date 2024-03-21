@@ -4,7 +4,7 @@
       "name": "myQueueItem",
       "type": "queueTrigger",
       "direction": "in",
-      "queueName": "assignment-4",
+      "queueName": "assignment4",
       "connection": "myStorageConnectionAppSetting" 
     }
   ]
