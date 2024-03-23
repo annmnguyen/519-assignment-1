@@ -57,9 +57,7 @@ jobs:
         containerAppName: assignment2
         resourceGroup: 519-web-app_group
         acrName: 519assignment2
-        environmentVariables: |
-          secret3=secretref:@Microsoft.KeyVault(SecretUri=https://assignment-4.vault.azure.net/secrets/secret3)
-
+        environmentVariables: secret3=secretref:secret3
         
       
     
