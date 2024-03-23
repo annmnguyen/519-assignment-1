@@ -12,7 +12,13 @@ There are three workflows for each Azure App. This is where Azure credientals an
 
 ## Creating Azure apps ##
 
-Azure Apps are created in the Azure Portal which are needed for the GitHub Action deployment process.
+Azure Apps are created in the Azure Portal which are needed for the GitHub Action deployment process. The web app and functions app can be deployed through the github actions. 
+
+# Container Deployment #
+
+Container instance can be deployed to Axure Functions app using GitHub actions. You can use Logs and Console under Monitoring in the Functions App to validate the deployment. 
+
+# Key Vault References # 
 
 ## Solutions Diagram ##
 
