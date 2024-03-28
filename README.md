@@ -20,6 +20,8 @@ Container instance can be deployed to Axure Functions app using GitHub actions. 
 
 # Key Vault References # 
 
+When running workflows, the function trigger will result in printing out the secrets referenced from the key vault in the web app, functions app log, and in the container apps log.
+
 ## Solutions Diagram ##
 
 ![image](https://github.com/annmnguyen/519-assignment-1/assets/101607810/b8bf04f5-b5ad-4d03-becc-2c08b61b5e95)
