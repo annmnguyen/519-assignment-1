@@ -24,4 +24,6 @@ When running workflows, the function trigger will result in printing out the sec
 
 ## Solutions Diagram ##
 
+The updated solutions diagram is in the draaw.io file.
+
 ![image](https://github.com/annmnguyen/519-assignment-1/assets/101607810/b8bf04f5-b5ad-4d03-becc-2c08b61b5e95)
