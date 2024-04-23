@@ -7,7 +7,7 @@ function App() {
   const handleUpload = (event) => {
     const files = event.target.files;
     const filedata = new FormData();
-    Array.from(files).forEach(file => fileData.append('photos', file));
+    Array.from(files).forEach(file => filedata.append('photos', file));
     axios.post('/api/UploadFile', filedata)
       .then(response => {
         console.log('upload success', response.data);
