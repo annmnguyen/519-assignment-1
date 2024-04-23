@@ -1,16 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import React { UseEffect, UseState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 function App() {
-  const handleUpload = (evemt) => {
+  const handleUpload = (event) => {
     const files = event.target.files;
-    const filedata = new FileData();
+    const filedata = new FormData();
     Array.from(files).forEach(file => fileData.append('photos', file));
     axios.post('/api/UploadFile', filedata)
       .then(response => {
-        console.log('upload success', reponse.data);
+        console.log('upload success', response.data);
       })
       .catch(error => {
         console.error('upload failed', error);
