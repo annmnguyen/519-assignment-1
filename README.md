@@ -22,6 +22,9 @@ Container instance can be deployed to Axure Functions app using GitHub actions. 
 
 When running workflows, the function trigger will result in printing out the secrets referenced from the key vault in the web app, functions app log, and in the container apps log.
 
+# Deploying Photo App #
+
+
 ## Solutions Diagram ##
 
 The updated solutions diagram is in the draaw.io file.
