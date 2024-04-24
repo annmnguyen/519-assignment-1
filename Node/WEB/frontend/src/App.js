@@ -10,8 +10,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        
         <div>
-          <button> hi</button>
+          <button style={{ background: "#801212"}} onClick={handleUpload}>Upload</button>
         </div>
         <a
           className="App-link"
