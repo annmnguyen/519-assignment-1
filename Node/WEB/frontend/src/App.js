@@ -11,14 +11,12 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <code>src/App.js</code> 
         </p>
         
         <form id="fileUploadForm" action="http://localhost:3000/analyze" method="post" enctype="multipart/form-data">
           <input type="file" name="file" required />
-          <button type="button" onClick={handleUpload} style={{ background: "#801212" }}>
-            Upload Image
-          </button>
+          
         </form>
         <a
           className="App-link"
