@@ -17,7 +17,7 @@
       "path": "images/{filename}",
       "connection": "blobStorageConnectionSetting",
       "direction": "out"
-    }
+    },
     {
       "type": "queue",
       "direction": "out",

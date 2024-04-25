@@ -6,6 +6,37 @@
       "direction": "in",
       "queueName": "assignment4",
       "connection": "mystorageconnectionappsetting" 
+    },
+    {
+      "name": "myInputBlob",
+      "type": "blob",
+      "dataType": "binary",
+      "path": "images/{queueTrigger}",
+      "connection": "blobStorageConnectionSetting",
+      "direction": "in"
+    },
+    {
+      "name": "myThumbnailBlob",
+      "type": "blob",
+      "dataType": "binary",
+      "path": "thumbnail/{queueTrigger}",
+      "connection": "blobStorageConnectionSetting",
+      "direction": "out"
+    },
+    {
+      "name": "mySmallBlob",
+      "type": "blob",
+      "dataType": "binary",
+      "path": "small-image/{queueTrigger}",
+      "connection": "blobStorageConnectionSetting",
+      "direction": "out"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "outputQueueItem",
+      "queueName": "compute-vision",
+      "connection": "mystorageconnectionappsetting"
     }
   ]
 }
